@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <button v-on:click="toggleText()">ToogleText</button>
+    <button v-on:click="toggleInput()">ToogleInput</button>
     <button v-on:click="reverseTextMethod()">reverseText</button>
     <p v-if="showText">{{ msg | reverse }}</p>
     <p>{{ reverseText }}</p>
@@ -9,7 +10,7 @@
         {{ user }}
       </li>
     </ul>
-    <input type="text" v-model="msg"/>
+    <input v-if="showInput" type="text" v-model="msg"/>
     <h1>{{ msg }}</h1>
     <h2>{{ text }}</h2>
     <Mio/>
@@ -26,23 +27,33 @@ export default {
     return {
       text: 'Hola de nuevo',
       showText: false,
-      msg: 'Mi Primera App con VUE <3'
+      msg: 'Mi Primera App con VUE <3',
+      showInput: true
     }
   },
   components: {
     Mio
   },
   methods: {
-    toggleText () {
+    toggleText: function () {
       this.showText = !this.showText
     },
     reverseTextMethod: function () {
-      this.text = this.text.split('').reverse().join('')
+      this.text = this.text
+        .split('')
+        .reverse()
+        .join('')
+    },
+    toggleInput: function () {
+      this.showInput = !this.showInput
     }
   },
   computed: {
     reverseText: function () {
-      return this.text.split('').reverse().join('')
+      return this.text
+        .split('')
+        .reverse()
+        .join('')
     }
   }
 }
@@ -50,7 +61,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
