@@ -6,8 +6,11 @@ import App from './App'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-Vue.filter('reverse', (value) => {
-  return value.split('').reverse().join('')
+Vue.filter('reverse', value => {
+  return value
+    .split('')
+    .reverse()
+    .join('')
 })
 
 new Vue({
